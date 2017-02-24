@@ -1,0 +1,14 @@
+
+
+
+window.onload = function(e){
+    var messageIn = document.getElementById("messageIn");
+    var messageOut = document.getElementById("messageOut");
+    var level = document.getElementById("level");
+  //  messageIn.innerHTML = messages[0];
+    console.log(state.level);
+    console.log(socket);
+
+    //localStorage.setItem('level', 0);
+    //localStorage.setItem('message', messages[0]);
+ }

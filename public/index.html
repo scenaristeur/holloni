@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HOLLONI</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- Babylon.js -->
+  <script src="./lib/hand.minified-1.2.js"></script>
+  <script src="./lib/cannon.js"></script>  <!-- optional -->
+  <script src="./lib/oimo.js"></script>  <!-- optional -->
+  <script src="./lib/babylon.js"></script>
+
+</head>
+<body>
+
+
+
+
+  <ul class="pages">
+
+    <li class="chat page">
+
+      <div class="chatArea" >
+
+      <ul class="messages"></ul>
+
+      </div>
+
+      <input class="inputMessage" placeholder="Utilise cette zone pour communiquer avec les autres participants ou le robot. . ."/>
+    </li>
+    <li>
+      <div id="canvasZone">
+          <canvas id="renderCanvas"></canvas>
+      </div>
+    </li>
+  <li class="login page">
+      <div class="form">
+        <h3 class="title">What's your nickname?</h3>
+        <input class="usernameInput" type="text" maxlength="14" />
+      </div>
+    </li>
+  </ul>
+
+
+
+
+  <script src="lib/jquery-3.1.1.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/holloni.js"></script>
+</body>
+</html>

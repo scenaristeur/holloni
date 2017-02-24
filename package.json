@@ -1,0 +1,22 @@
+{
+  "name": "holloni",
+  "version": "1.0.0",
+  "description": "interface de gestion d'une organisation holocratique holonique",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "holacracy",
+    "babylonjs",
+    "3d",
+    "holon",
+    "rdf"
+  ],
+  "author": "Smag0",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1",
+    "socketio": "^1.0.0"
+  }
+}

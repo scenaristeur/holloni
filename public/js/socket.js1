@@ -1,0 +1,35 @@
+
+
+
+var host = window.document.location.host;
+var socket = io(host);
+socket.on('connect', function(){
+    console.log("connecte");
+    console.log(socket);
+    var username = localStorage.getItem('hl_username');
+    console.log(username);
+    if (username == null){
+      username = prompt("Saisissez un nom d'utilisateur",socket.id);
+    }
+    localStorage.setItem('hl_username',username);
+    socket.emit('add user', username);
+});
+
+socket.on('event', function(data){
+    console.log(data);
+});
+
+socket.on('disconnect', function(){
+    console.log("deconnecte");
+});
+
+// Whenever the server emits 'login', log the login message
+ socket.on('login', function (data) {
+   connected = true;
+   // Display the welcome message
+   var message = "Welcome to Socket.IO Chat – ";
+   log(message, {
+     prepend: true
+   });
+   addParticipantsMessage(data);
+});

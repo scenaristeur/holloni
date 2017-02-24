@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>holloni</title>
+
+        <link rel="stylesheet" href="styles/style.css">
+        <!-- Babylon.js -->
+        <script src="./lib/hand.minified-1.2.js"></script>
+        <script src="./lib/cannon.js"></script>  <!-- optional -->
+        <script src="./lib/oimo.js"></script>  <!-- optional -->
+        <script src="./lib/babylon.js"></script>
+
+        <!-- librairie  -->
+        <script src="lib/socket.io.js"></script>
+        <script src="lib/jquery-3.1.1.min.js"></script>
+        <!-- holloni -->
+        <script src="js/socket.js"></script>
+        <script src="js/tools.js"></script>
+        <script src="js/message.js"></script>
+    </head>
+
+
+<body>
+    <div id="canvasZone">
+        <canvas id="renderCanvas"></canvas>
+    </div>
+    <div class="chatArea">
+           <ul class="messages"></ul>
+         </div>
+   <input class="inputMessage" placeholder="Type here..."/>
+  <!--  <div style="background-color: lightblue;">
+      <div id="level">0</div>
+      <div>
+    Possible de mettre autre chose que body en plein ecran !
+         http://stackoverflow.com/questions/7179535/set-window-to-fullscreen-real-fullscreen-f11-functionality-by-javascript
+        <input type="button" value="fullscreen" onclick="toggleFullScreen(document.body)">
+        <input type="button" value="Deconnexion" onclick="deconnecte()">
+      </div>
+      <div id="messageIn" >
+
+          Message in: </div>
+    <div id="messageOut" >
+        <input type="text" placeholder="Message out: "/>
+    </div>
+  </div>-->
+</body>
+
+        <script src="js/holloni.js"></script>
+</html>
