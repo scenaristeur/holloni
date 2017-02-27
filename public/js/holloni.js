@@ -1,7 +1,38 @@
-var state = {};
+var state = {level : 0};
 var canvas = document.getElementById("renderCanvas");
 var engine = new BABYLON.Engine(canvas, true);
 var font = "24px verdana";
+
+var rightClic = function (){
+    console.log("rightClic");
+}
+
+
+
+class Cylindre{
+ /* constructor(hauteur, largeur) {
+    this.hauteur = hauteur;
+    this.largeur = largeur;
+  }*/
+  constructor(scene){
+
+    //  this.mesh = BABYLON.Mesh.CreateBox("cyl", 40, scene);
+    // name, height, diamTop, diamBottom, tessellation, heightSubdivs, scene, updatable and the optional side orientatio
+      this.mesh = BABYLON.Mesh.CreateCylinder("cylinder", 60, 10, 60, 6, 1, scene);
+      this.mat = new BABYLON.StandardMaterial("ground", scene);
+      this.mat.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);
+      this.mat.specularColor = new BABYLON.Color3(0.4, 0.4, 0.4);
+      this.mat.emissiveColor = new BABYLON.Color3(0, 0, 0); //BABYLON.Color3.Green();
+      this.mesh.material = this.mat;
+      this.mesh.position.z -= 100;
+      this.mesh.position.y = 10;
+console.log(this);
+  }
+
+ 
+
+}
+
 
 var createScene = function () {
     var scene = new BABYLON.Scene(engine);
@@ -23,9 +54,9 @@ var createScene = function () {
     groundMaterial.specularColor = BABYLON.Color3.Black();
     ground.material = groundMaterial;
 
-    // Meshes
-    var redSphere = BABYLON.Mesh.CreateSphere("red", 32, 20, scene);
-    var redMat = new BABYLON.StandardMaterial("ground", scene);
+   // Meshes
+     var redSphere = BABYLON.Mesh.CreateSphere("red", 32, 20, scene);
+     var redMat = new BABYLON.StandardMaterial("ground", scene);
     redMat.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);
     redMat.specularColor = new BABYLON.Color3(0.4, 0.4, 0.4);
     redMat.emissiveColor = BABYLON.Color3.Red();
@@ -43,6 +74,8 @@ var createScene = function () {
     greenBox.position.z -= 100;
     greenBox.position.y = 10;
 
+    var cylindre = new Cylindre(scene);
+
     var blueBox = BABYLON.Mesh.CreateBox("blue", 20, scene);
     var blueMat = new BABYLON.StandardMaterial("ground", scene);
     blueMat.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);
@@ -59,6 +92,7 @@ var createScene = function () {
     purpleMat.specularColor = new BABYLON.Color3(0.4, 0.4, 0.4);
     purpleMat.emissiveColor = BABYLON.Color3.Purple();
     purpleDonut.material = purpleMat;
+    console.log(redSphere);
     purpleDonut.position.x = redSphere.position.x;
     purpleDonut.position.y = redSphere.position.y;
     purpleDonut.position.z = redSphere.position.z;
@@ -67,7 +101,7 @@ var createScene = function () {
     redSphere.parent = purpleDonut;
 
       //lettres
-    var letters = "abc";
+    var letters = "";
     var currentRole = letters;
 
     var dynTex = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
@@ -133,17 +167,21 @@ var createScene = function () {
             startingPoint = null;
             if ((state.connection) && (currentMesh == redSphere)) {
                 console.log(state);
-                    var role =  prompt("Quel est ce 'RÔLE'?\n\nQue veux-tu être dans cette aventure ?\nUn pirate ?\nUn super-héros ?\nUn roi ?\nUn sage ?\nOu n'importe quel autre 'RÔLE' à toi de décider.", state.currentRole);
-                    //Update dynTex
-                    if (role != null){
-                        state.currentRole = role;
-                          /*  localStorage.setItem('currentRole', role);
-                              localStorage.setItem('level', 1);*/
-                              var message = {
-                                  text : "test"
-                              }
+
                             console.log(role);
-                          //  socket.emit('add role', role);
+                            if (state.level < 1){
+                            //  socket.emit('change level', 1);
+                              var role =  prompt("Quel est ce 'RÔLE'?\n\nQue veux-tu être dans cette aventure ?\nUn pirate ?\nUn super-héros ?\nUn roi ?\nUn sage ?\nOu n'importe quel autre 'RÔLE' à toi de décider.", state.currentRole);
+                              //Update dynTex
+                              if (role != null){
+                                  state.currentRole = role;
+                                    /*  localStorage.setItem('currentRole', role);
+                                        localStorage.setItem('level', 1);*/
+                                        var message = {
+                                            text : "test"
+                                        }
+                            }
+
                     dynTex.drawText(role, null, 250, font, "black", "white");
                     }
                 }

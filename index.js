@@ -14,13 +14,15 @@ app.use(express.static(__dirname + '/public'));
 
 //Socket.IO
 // Chatroom
-var robotName = "Smag"
+var robotName = "Smag";
+var socketId;
+var username;
 var numUsers = 0;
 var appState = {};
 var messages = ["Essai de déplacer la sphère ( toi ) dans le rôle ( le cercle ).",
                 "Pour commencer, 'TOI' tu es la SPHERE ROUGE, et pour prendre part à cette aventure, "
                 + "tu dois prendre un 'ROLE' représenté par le CERCLE VIOLET.",
-								"Salut, je m'appelle "+robotName+", et ceci est un nouveau jeu.",
+								"Salut, je m'appelle '"+robotName+"', et ceci est un nouveau jeu.",
 						/*		"Maintenant que tu as donné un nom à ce 'ROLE', il va falloir lui donner sa 'RAISON D\'ETRE', c'est à dire .."*/
                 "Bien, maintenant passons aux BOX, il y a deux boîtes, une verte et une bleue, laquelle choisis-tu ?"
                 + "Glisse maintenant le 'ROLE' que tu viens de créer jusqu'à l'une de ces deux BOX.",
@@ -36,6 +38,7 @@ io.on('connection', function (socket) {
 
 		// we store the username in the socket session for this client
 		socket.username = username;
+		userId = socket.id;
 		++numUsers;
 		addedUser = true;
 				console.log("user :" +username+" "+numUsers );

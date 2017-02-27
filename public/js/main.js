@@ -23,7 +23,9 @@ $(function() {
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
 
-  var socket = io();
+  var host = window.document.location.host;
+  var socket = io(host);
+
 
   function addParticipantsMessage (data) {
     var message = '';
@@ -58,13 +60,20 @@ $(function() {
     message = cleanInput(message);
     // if there is a non-empty message and a socket connection
     if (message && connected) {
-      $inputMessage.val('');
-      addChatMessage({
-        username: username,
-        message: message
-      });
-      // tell server to execute 'new message' and send along one parameter
-      socket.emit('new message', message);
+      if (message.startsWith("/")){
+        var commandLine = message.split(" ");
+        var commande = commandLine.shift().substring(1);
+        var params = commandLine;
+        commandes(commande,params);
+      }else{
+          $inputMessage.val('');
+          addChatMessage({
+          username: username,
+          message: message
+        });
+        // tell server to execute 'new message' and send along one parameter
+        socket.emit('new message', message);
+      }
     }
   }
 
